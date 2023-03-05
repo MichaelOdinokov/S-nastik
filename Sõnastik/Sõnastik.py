@@ -1,0 +1,2 @@
+from Omamodul import*
+main
