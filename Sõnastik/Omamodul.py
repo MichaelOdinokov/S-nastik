@@ -1,56 +1,35 @@
 ﻿from random import*
+ # Функция для чтения данных из файла и сохранения их в список
+#def read_file(filename):
+    #with open(filename, 'r', encoding='utf-8-sig') as f:
+        #data=[line.strip() for line in f ]#strip() удаляет любые пробельные символы
+    #return data
 
-# Основная функция программы
-def main():
-    # Чтение данных из файлов
-    rus_dict=dict(zip(read_file('rus.txt'), read_file('est.txt'))) #создаёт словарь
-
-    while True:
-        print('Выберите действие:')
-        print('1. Перевод с русского на эстонский')
-        print('2. Перевод с эстонского на русский')
-        print('3. Добавление нового слова в словарь')
-        print('4. Исправление перевода слова в словаре')
-        print('5. Проверка знания слов из словаря')
-        print('6. Выход')
-        choice=input().strip()
-
-        if choice==1:
-            word = input('Введите слово для перевода: ')
-            translation=translate_rus_to_est(word, rus_dict)
-            print(f'Перевод: {translation}')
-        elif choice==2:
-            word=input('Введите слово для перевода: ')
-            translation=translate_rus_to_est(word, rus_dict)
-            print(f'Перевод: {translation}')
-        elif choice==3:
-            add_word_to_dict
-        elif choice==4:
-            edit_translation_in_dict
-        elif choice==5:
-            test_word_knowledge
-        
-
-# Функция для чтения данных из файла и сохранения их в список
-def read_file(filename):
-    with open(filename, 'r', encoding='utf-8-sig') as f:
-        data=[line.strip() for line in f]#strip() удаляет любые пробельные символы
-    return data
+def read_file(f):
+    fail=open(f,'r',encoding="utf-8-sig")
+    mas=[]
+    for rida in fail:
+        mas.append(rida.strip())
+        fail.close()
+    return mas
+rus:list=read_file("rus.txt")
 
 # Функция для записи данных из списка в файл
 def write_file(data, filename):
-    with open(filename, 'w', encoding='utf-8-sig') as f:
+    with open("est.txt", 'w', encoding='utf-8-sig') as f:
         for item in data:
             f.write(item + '\n')
+
+def translate_est_to_rus(word, dictionary):
+     return dictionary.get(word, 'Слово не найдено в словаре')#Если ключ word в словаре то возвращает значение из словаря
+
 
 # Функция для перевода слова с русского на эстонский
 def translate_rus_to_est(word, dictionary):
     return dictionary.get(word, 'Слово не найдено в словаре')#Если ключ word в словаре то возвращает значение из словаря
 
 # Функция для добавления слова в словарь
-def add_word_to_dict(dictionary):
-    word=input('Введите новое слово: ')
-    translation=input('Введите перевод слова: ')
+def add_word_to_dict(dictionary, word, translation):
     dictionary[word]=translation
     return dictionary
 
