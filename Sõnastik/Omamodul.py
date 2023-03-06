@@ -1,21 +1,13 @@
 ﻿from random import*
- # Функция для чтения данных из файла и сохранения их в список
-#def read_file(filename):
-    #with open(filename, 'r', encoding='utf-8-sig') as f:
-        #data=[line.strip() for line in f ]#strip() удаляет любые пробельные символы
-    #return data
 
-def read_file(f):
-    fail=open(f,'r',encoding="utf-8-sig")
-    mas=[]
-    for rida in fail:
-        mas.append(rida.strip())
-        fail.close()
-    return mas
-rus:list=read_file("rus.txt")
+# Функция для чтения данных из файла и сохранения их в список
+def read_file(filename):
+    with open(filename, 'r', encoding='utf-8-sig') as f:
+        data=[line.strip() for line in f ]#strip() удаляет любые пробельные символы
+    return data
 
 # Функция для записи данных из списка в файл
-def write_file(data, filename):
+def write_file(data,):
     with open("est.txt", 'w', encoding='utf-8-sig') as f:
         for item in data:
             f.write(item + '\n')
@@ -31,24 +23,27 @@ def translate_rus_to_est(word, dictionary):
 # Функция для добавления слова в словарь
 def add_word_to_dict(dictionary, word, translation):
     dictionary[word]=translation
+    dictionary[word].append("est.txt")
+    translation.append("rus.txt")
+
     return dictionary
 
 # Функция для исправления перевода слова в словаре
 def edit_translation_in_dict(word, dictionary):
-    if word in dictionary:
+    if word in "est.txt":
         new_translation=input(f'Введите новый перевод для слова "{word}": ')
-        dictionary[word]=new_translation
+        "est.txt"[word]=new_translation
     else:
         print('Слово не найдено в словаре')
 
 # Функция для проверки знания слов из словаря
-def test_word_knowledge(dictionary):
+def test_word_knowledge(dictionary)->str:
     words=list(dictionary.keys())#Эта функция создает список, содержащий все ключи (слова) из словаря.
     random.shuffle(words)#перемешивает элементы списка words в случайном порядке. 
     correct=0
     total=len(words)
     for word in words:
-        print(f'Переведите слово "{word}"')
+        print(f'Переведите слово: {word}-')
         answer=input().strip()
         if answer==dictionary[word]:
             print('Правильно!')
