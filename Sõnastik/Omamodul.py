@@ -1,11 +1,14 @@
 ﻿from random import*
-
+est=["koer","kassa"]
+rus=["собака","проверить"]
 # Функция для чтения данных из файла и сохранения их в список
 def read_file(filename):
-    with open(filename, 'r', encoding='utf-8-sig') as f:
-        data=[line.strip() for line in f ]#strip() удаляет любые пробельные символы
-    return data
-
+    f=open("est.txt", 'r', encoding='utf-8-sig')
+    print(f.read())
+    print()
+    f=open("rus.txt", 'r', encoding='utf-8-sig')
+    print(f.read())
+    f.close()
 # Функция для записи данных из списка в файл
 def write_file(data,):
     with open("est.txt", 'w', encoding='utf-8-sig') as f:
@@ -13,7 +16,7 @@ def write_file(data,):
             f.write(item + '\n')
 
 def translate_est_to_rus(word, dictionary):
-     return dictionary.get(word, 'Слово не найдено в словаре')#Если ключ word в словаре то возвращает значение из словаря
+     return dictionary.get(word, 'Слово не найдено в словаре')# Если ключ word в словаре то возвращает значение из словаря
 
 
 # Функция для перевода слова с русского на эстонский
@@ -25,19 +28,17 @@ def add_word_to_dict(dictionary, word, translation):
     dictionary[word]=translation
     dictionary[word].append("est.txt")
     translation.append("rus.txt")
-
     return dictionary
 
 # Функция для исправления перевода слова в словаре
-def edit_translation_in_dict(word, dictionary):
-    if word in "est.txt":
-        new_translation=input(f'Введите новый перевод для слова "{word}": ')
-        "est.txt"[word]=new_translation
-    else:
-        print('Слово не найдено в словаре')
+def edit_translation_in_dict():
+    with open("rus.txt","w", encoding='utf-8-sig'):
+        wordrus=input("Введите занова слово на русском:")        
+    with open("est.txt","w", encoding='utf-8-sig'):
+        word=input("Введите занова слово на эстонском:")
 
 # Функция для проверки знания слов из словаря
-def test_word_knowledge(dictionary)->str:
+"""def test_word_knowledge(dictionary)->str:    
     words=list(dictionary.keys())#Эта функция создает список, содержащий все ключи (слова) из словаря.
     random.shuffle(words)#перемешивает элементы списка words в случайном порядке. 
     correct=0
@@ -51,8 +52,34 @@ def test_word_knowledge(dictionary)->str:
         else:
             print(f'Неправильно. Правильный ответ: {dictionary[word]}')
     percentage_correct=(correct/total)*100
-    print(f'Вы ответили правильно на {percentage_correct}% вопросов')
+print(f'Вы ответили правильно на {percentage_correct}% вопросов')
+"""
 
-
-
-
+def test_word_knowledge(rus:list, est: list)->str:
+    kokku=int(input("Mitu küsimust?"))
+    for i in range(kokku):
+        järjend=choice=([rus, est])
+        sõna=choice(järjend)
+        print(f"{sõna}")
+        tõlke=input()
+        if sõna in rus:
+            i=rus.index(sõna)
+            tõlke_kontroll=est[i]
+        elif sõna in est:
+            i=est.index(sõna)
+            tõlke_kontroll=rus[i]
+        if tõlke==tõlke_kontroll:
+            p+=1
+            print("Õige")
+        else:
+            print("Vale")
+        p=5
+    if (p/kokku)*100>90:
+        hinne=5
+    elif (p/kokku)*100>75:
+        hinne=4
+    elif (p/kokku)*100>60:
+        hinne=3
+    else:
+        hinne="Väga halb"
+    return hinne

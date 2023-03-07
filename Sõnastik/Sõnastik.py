@@ -1,16 +1,18 @@
 ﻿from Omamodul import*
 rus_dict=dict(zip(read_file('rus.txt'), read_file('est.txt'))) #создаёт словарь
 est_dict=dict(zip(read_file('est.txt'), read_file('rus.txt')))
+est=["koer","kassa"]
+rus=["собака","проверить"]
 
 while True:
     print('Выберите действие:')
     print('1. Перевод с русского на эстонский')
     print('2. Перевод с эстонского на русский')
-    print('3. Добавление нового слова в словарь') # ei töö..?
-    print('4. Исправление перевода слова в словаре')# ei töö.?
-    print('5. Проверка знания слов из словаря') # ei töö
-    print('6. чтения данных из словаря') # ei töö
-    print("7. write") # ei töö
+    print('3. Добавление нового слова в словарь') 
+    print('4. Исправление перевода слова в словаре')# ei töö
+    print('5. Проверка знания слов из словаря')
+    print('6. чтения данных из словаря') 
+    print("7. write") # ei töö 
 
     choice=int(input("Arv:"))
 
@@ -29,7 +31,8 @@ while True:
     elif choice==4:
         edit_translation_in_dict
     elif choice==5:
-        test_word_knowledge
+            hinne=test_word_knowledge
+            print(hinne)
     elif choice==6:
         read_file
     elif choice==7:
