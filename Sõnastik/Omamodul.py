@@ -1,6 +1,5 @@
 ﻿from random import*
-est=["koer","kassa"]
-rus=["собака","проверить"]
+
 # Функция для чтения данных из файла и сохранения их в список
 def read_file(filename):
     f=open("est.txt", 'r', encoding='utf-8-sig')
